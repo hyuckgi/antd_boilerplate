@@ -47,6 +47,17 @@ const postCssOpts = {
   ],
 };
 
+const babelImportOptions = [
+    {
+        'libraryName':'antd',
+        'style': true
+    },
+    {
+        'libraryName': 'antd-mobile',
+        'style': true
+    }
+];
+
 // This is the development configuration.
 // It is focused on developer experience and fast rebuilds.
 // The production configuration is different and lives in a separate file.
@@ -153,30 +164,40 @@ module.exports = {
         // match the requirements. When no loader matches it will fall
         // back to the "file" loader at the end of the loader list.
         oneOf: [
-          // Process JS with Babel.
-          {
-            test: /\.(js|jsx|mjs)$/,
-            include: paths.appSrc,
-            loader: require.resolve('babel-loader'),
-            options: {
-                cacheDirectory: true,
-                plugins: [
-                    'react-hot-loader/babel',
-                    ["transform-runtime", { polyfill: false }],
-                    ['import', { libraryName: 'antd-mobile', style: true }],
-                    ["import", { "libraryName": "antd", "style": true }],
-                ],
-              // This is a feature of `babel-loader` for webpack (not Babel itself).
-              // It enables caching results in ./node_modules/.cache/babel-loader/
-              // directory for faster rebuilds.
-            },
-          },
-          {
-              test: /\.svg$/,
-              loader: 'svg-sprite-loader',
+            // "url" loader works like "file" loader except that it embeds assets
+            // smaller than specified limit in bytes as data URLs to avoid requests.
+            // A missing `test` is equivalent to a match.
+            {
+              test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/],
+              loader: require.resolve('url-loader'),
               options: {
-              }
-          },
+                limit: 10000,
+                name: 'static/resource/[name].[hash:8].[ext]',
+              },
+            },
+            // Process JS with Babel.
+            {
+              test: /\.(js|jsx)$/,
+              include: paths.appSrc,
+              loader: require.resolve('babel-loader'),
+              options: {
+                  cacheDirectory: true,
+                  plugins: [
+                      'react-hot-loader/babel',
+                      ["transform-runtime", { polyfill: false }],
+                      ["import", babelImportOptions],
+                  ],
+                // This is a feature of `babel-loader` for webpack (not Babel itself).
+                // It enables caching results in ./node_modules/.cache/babel-loader/
+                // directory for faster rebuilds.
+              },
+            },
+            {
+                test: /\.svg$/,
+                loader: 'svg-sprite-loader',
+                options: {
+                }
+            },
           {
             // Exclude `js` files to keep "css" loader working as it injects
             // it's runtime that would otherwise processed through "file" loader.
@@ -198,17 +219,7 @@ module.exports = {
               name: 'static/resource/[name].[hash:8].[ext]',
             },
           },
-          // "url" loader works like "file" loader except that it embeds assets
-          // smaller than specified limit in bytes as data URLs to avoid requests.
-          // A missing `test` is equivalent to a match.
-          {
-            test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/],
-            loader: require.resolve('url-loader'),
-            options: {
-              limit: 10000,
-              name: 'static/resource/[name].[hash:8].[ext]',
-            },
-          },
+
           // "postcss" loader applies autoprefixer to our CSS.
           // "css" loader resolves paths in CSS and adds assets as dependencies.
           // "style" loader turns CSS into JS modules that inject <style> tags.

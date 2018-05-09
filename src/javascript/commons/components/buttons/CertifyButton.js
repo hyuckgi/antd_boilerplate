@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { APICaller } from 'wink_mobile_commons/dist/api';
+import { APICaller } from '../api';
 import { service, api } from '../../configs';
 
 import { Button, Toast } from 'antd-mobile';

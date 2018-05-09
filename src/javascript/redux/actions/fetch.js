@@ -1,5 +1,5 @@
 import {fetch as creator} from '../creators';
-import {APICaller} from 'wink_mobile_commons/dist/api';
+import {APICaller} from '../../commons/api';
 
 export const reset = () => {
     return (dispatch) => {

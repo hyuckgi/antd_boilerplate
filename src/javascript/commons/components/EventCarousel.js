@@ -3,7 +3,7 @@ import moment from 'moment'
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { APICaller } from 'wink_mobile_commons/dist/api';
+import { APICaller } from '../api';
 
 import { fetch } from '../../redux/actions';
 

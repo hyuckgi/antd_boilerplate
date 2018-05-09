@@ -4,7 +4,7 @@ import { push } from 'react-router-redux';
 import { connect } from 'react-redux';
 import queryString from 'query-string';
 
-import { APICaller } from 'wink_mobile_commons/dist/api';
+import { APICaller } from '../../api';
 
 import { fetch, security } from '../../../redux/actions';
 import { fetch as creators } from '../../../redux/creators';

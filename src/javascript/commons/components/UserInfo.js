@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createForm } from 'rc-form';
-import { APICaller } from 'wink_mobile_commons/dist/api';
+import { APICaller } from '../api';
 
 import { service, values, api } from '../configs';
 import { FormMode } from '../types';

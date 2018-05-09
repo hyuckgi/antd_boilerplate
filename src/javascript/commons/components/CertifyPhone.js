@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { createForm } from 'rc-form';
 
 import { security } from '../../redux/actions';
-import { APICaller } from 'wink_mobile_commons/dist/api';
+import { APICaller } from '../api';
 import { service, api } from '../configs';
 import { FormMode } from '../types';
 import { CertifyButton, CustomIcon } from './';

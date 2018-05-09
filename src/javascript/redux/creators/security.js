@@ -30,4 +30,9 @@ export const logout = () => {
     }
 };
 
-// TODO: 화면 refesh 할 때, SessionService 에서 정보를 가져오는 것 필요함.
+export const refreshUser = (params) => {
+    return {
+        type: type.REFRESH_USER,
+        payload: params
+    };
+}

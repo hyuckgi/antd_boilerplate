@@ -1,5 +1,4 @@
 import {security as type} from '../types';
-import { values } from '../../commons/configs';
 
 const initialState = {
     actorType: {}

@@ -2,7 +2,7 @@ import axios from 'axios';
 
 import {security as creator}  from '../creators';
 import {fetch as fetchCreator}  from '../creators';
-import {SecurityService} from 'wink_mobile_commons/dist/security/services';
+import {SecurityService} from '../../commons/configs/security';
 
 export const errorHandler = (dispatch) => {
     axios.interceptors.response.use(response => {
